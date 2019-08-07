@@ -13,6 +13,12 @@ export default new Router({
             name: 'registro',
             component: () =>
                 import ( /* webpackChunkName: "about" */ './views/Registro.vue')
+        },
+        {
+            path: '/inicio',
+            name: 'inicio',
+            component: () =>
+                import ( /* webpackChunkName: "about" */ './views/Inicio.vue')
         }
     ]
 })
