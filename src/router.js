@@ -19,6 +19,12 @@ export default new Router({
             name: 'inicio',
             component: () =>
                 import ( /* webpackChunkName: "about" */ './views/Inicio.vue')
+        },
+        {
+            path: '/ingreso',
+            name: 'ingreso',
+            component: () =>
+                import ( /* webpackChunkName: "about" */ './views/Ingreso.vue')
         }
     ]
 })

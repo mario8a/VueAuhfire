@@ -33,6 +33,27 @@ export default new Vuex.Store({
                     console.log(err.message);
                     commit('setError', err.message)
                 })
+        },
+        ingresoUsuario({ commit }, payload) {
+            firebase.auth().signInWithEmailAndPassword(payload.email, payload.pass)
+                .then(res => {
+                    console.log(res);
+                    //console.log('Ingreso correctamente');
+                    commit('setUsuario', { email: res.user.email, uid: res.user.uid })
+                    router.push({ name: 'inicio' })
+                })
+                .catch(err => {
+                    console.log(err.message);
+                    commit('setError', err.message)
+                })
+        },
+        detectarUsuario({ commit }, payload) {
+            commit('setUsuario', { email: payload.email, uid: payload.uid })
+        },
+        cerrarSesion({ commit }) {
+            firebase.auth().signOut()
+            commit('setUsuario', null)
+            router.push({ name: 'ingreso' })
         }
     }
 })

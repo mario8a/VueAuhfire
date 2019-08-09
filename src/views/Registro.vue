@@ -3,9 +3,9 @@
         <h1>Registro de usuarios</h1>
         <!-- los data de la vista estan pasando como parametros -->
         <form @submit.prevent="crearUsuario({email: email, pass:pass1})">
-            <input type="email" v-model="email">
-            <input type="password" v-model="pass1">
-            <input type="password" v-model="pass2">
+            <input type="email" v-model="email" placeholder="email">
+            <input type="password" v-model="pass1" placeholder="password">
+            <input type="password" v-model="pass2" placeholder="password verify">
             <button type="submit" :disabled="!desactivar" >Crear usuario</button>
         </form>
         <p>{{error}}</p>
