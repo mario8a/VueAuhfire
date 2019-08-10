@@ -1,4 +1,9 @@
 import Vue from 'vue'
+import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -8,6 +13,7 @@ var firebase = require('firebase/app');
 
 require('firebase/auth');
 // require('firebase/database');
+require('firebase/firestore');
 
 var firebaseConfig = {
     apiKey: "AIzaSyCrTqsZZyp2-Kq4u90IVALsLInj0MxFiNA",
@@ -19,7 +25,11 @@ var firebaseConfig = {
     appId: "1:881395870806:web:c49b8f50fd7e0d80"
 };
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+firebaseApp.firestore();
+
+export default firebase.firestore()
 
 Vue.config.productionTip = false
 

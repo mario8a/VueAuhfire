@@ -27,6 +27,20 @@ const router = new Router({
             name: 'ingreso',
             component: () =>
                 import ( /* webpackChunkName: "about" */ './views/Ingreso.vue')
+        },
+        {
+            path: '/agregar',
+            name: 'agregar',
+            component: () =>
+                import ( /* webpackChunkName: "about" */ './views/Agregar.vue'),
+            meta: { requiresAuth: true }
+        },
+        {
+            path: '/editar/:id',
+            name: 'editar',
+            component: () =>
+                import ( /* webpackChunkName: "about" */ './views/Editar.vue'),
+            meta: { requiresAuth: true }
         }
     ]
 })
