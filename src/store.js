@@ -48,12 +48,26 @@ export default new Vuex.Store({
                 })
         },
         detectarUsuario({ commit }, payload) {
-            commit('setUsuario', { email: payload.email, uid: payload.uid })
+            if (payload != null) {
+                commit('setUsuario', { email: payload.email, uid: payload.uid })
+            } else {
+                commit('setUsuario', null)
+            }
         },
         cerrarSesion({ commit }) {
             firebase.auth().signOut()
             commit('setUsuario', null)
             router.push({ name: 'ingreso' })
+        }
+    },
+    getters: {
+        //en los getters obtendremos un state para tener una respuesta de true o false
+        existeUsuario(state) {
+            if (state.usuario === null || state.usuario === '' || state.usuario === undefined) {
+                return false
+            } else {
+                return true
+            }
         }
     }
 })
