@@ -13,7 +13,8 @@ export default new Vuex.Store({
         usuario: '',
         error: '',
         tareas: [],
-        tarea: { nombre: '', id: '' }
+        tarea: { nombre: '', id: '' },
+        carga: false
     },
     mutations: {
         setUsuario(state, payload) {
@@ -34,6 +35,9 @@ export default new Vuex.Store({
             state.tareas = state.tareas.filter(doc => {
                 return doc.id != id
             })
+        },
+        cargarFirebase(state, payload) {
+            state.carga = payload
         }
     },
     actions: {
@@ -85,6 +89,9 @@ export default new Vuex.Store({
         },
         //aqui obtendremos las tareas que vienen de la db
         getTareas({ commit }) {
+
+            commit('cargarFirebase', true);
+
             //accediendo a info del usuairo activo, eso regresa
             const usuario = firebase.auth().currentUser
                 //
@@ -97,7 +104,13 @@ export default new Vuex.Store({
                     tarea.id = doc.id
                     tareas.push(tarea)
                 })
+
+                setTimeout(() => {
+                    commit('cargarFirebase', false);
+                }, 2000)
             })
+
+
 
             commit('setTareas', tareas)
         },
